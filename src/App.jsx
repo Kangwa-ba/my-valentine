@@ -1,75 +1,91 @@
-import { useState } from "react";
-import "./App.css";
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Be My Valentine 💘</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      height: 100vh;
+      margin: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: linear-gradient(135deg, #ff9a9e, #fad0c4);
+    }
 
-import bearKissingGif from "./assets/bear-kissing-gif.gif";
-import bearRosesGif from "./assets/cute-love-bear-roses-gif.gif";
+    .container {
+      text-align: center;
+      background: white;
+      padding: 40px;
+      border-radius: 20px;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+    }
 
+    h1 {
+      margin-bottom: 30px;
+    }
 
-const phrases = [
-  "No",
-  "Are you sure?",
-  "Really sure?",
-  "Pookie please",
-  "Don't do this to me",
-  "I'm gonna cry...",
-  "You are breaking my heart;(",
-];
-function App() {
-  const [yesPressed, setYesPressed] = useState(false);
-  const [noCount, setNoCount] = useState(0);
-  const [noDisabled, setNoDisabled] = useState(false);
-  const yesButtonSize = noCount * 10 + 16;
+    button {
+      padding: 15px 30px;
+      font-size: 18px;
+      border: none;
+      border-radius: 12px;
+      cursor: pointer;
+      margin: 10px;
+      position: relative;
+    }
 
-  function getNoButtonText() {
-    return phrases[noCount % phrases.length];
-  }
-  function handleNoCount() {
-    if (noCount < phrases.length) setNoCount(noCount + 1);
-    else setNoDisabled(false);
-  }
-  function handleYesPressed() {
-    setYesPressed((pressed) => !pressed);
-  }
+    #yes {
+      background-color: #ff4d6d;
+      color: white;
+    }
 
-  return (
-    <>
-      <div>
-        {yesPressed ? (
-          <>
-            <img
-              className="img-2"
-              src={bearKissingGif}
-              alt="bears kissing"
-            />
-            <h2>OK Yay!!!!</h2>
-          </>
-        ) : (
-          <>
-            <img
-              className="img-1"
-              src={bearRosesGif}
-              alt="bear-roses"
-            />
-            <h2>Will you be my valentine?</h2>
-            <div>
-              <button
-                className="button-yes"
-                onClick={handleYesPressed}
-                style={{ fontSize: yesButtonSize }}
-              >
-                Yes
-              </button>
-              <button className="button-no" onClick={handleNoCount}>
-                {getNoButtonText()}
-              </button>
-            </div>
-          </>
-        )}
-      </div>
-      {yesPressed && <p className="footer">-Made with ❤️ by ram</p>}
-      
-    </>
-  );
-}
+    #no {
+      background-color: #ccc;
+    }
 
-export default App;
+    #message {
+      display: none;
+      font-size: 22px;
+      margin-top: 20px;
+      color: #ff4d6d;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <h1>Will you be my Valentine? 💘</h1>
+
+    <button id="yes">Yes ❤️</button>
+    <button id="no">No 😅</button>
+
+    <div id="message">
+      YAY!!! 😍💖 
+      You just made me the happiest man alive. 
+      Valentine’s Day is OURS 🥂✨
+    </div>
+  </div>
+
+  <script>
+    const noBtn = document.getElementById("no");
+    const yesBtn = document.getElementById("yes");
+    const message = document.getElementById("message");
+
+    noBtn.addEventListener("mouseover", () => {
+      const x = Math.random() * 300 - 150;
+      const y = Math.random() * 300 - 150;
+      noBtn.style.transform = `translate(${x}px, ${y}px)`;
+    });
+
+    yesBtn.addEventListener("click", () => {
+      message.style.display = "block";
+      noBtn.style.display = "none";
+      yesBtn.style.display = "none";
+    });
+  </script>
+
+</body>
+</html>
